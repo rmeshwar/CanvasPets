@@ -1,1 +1,35 @@
-<!-- TODO: Create page for user settings -->
+<!-- TODO: Add form elements to configure settings -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Pet - Settings</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Settings</h1>
+        <form id="settings-form">
+            <!-- TODO: Add options to enable/disable notifications -->
+            <label for="notifications">Enable Notifications:</label>
+            <input type="checkbox" id="notifications" checked>
+            
+            <!-- TODO: Add options to set assignment check intervals -->
+            <label for="interval">Check Canvas assignments every:</label>
+            <select id="interval">
+                <option value="5">5 minutes</option>
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+
+            <!-- TODO: Add other settings/functionalities-->
+            </select>
+            
+            <button type="submit">Save Settings</button>
+        </form>
+    </div>
+    <script src="../options.js"></script>
+</body>
+</html>
