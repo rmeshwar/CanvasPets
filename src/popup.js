@@ -1,0 +1,1 @@
+// TODO: Create JavaScript for popup behavior (fetch Canvas data, update pet status, etc)
