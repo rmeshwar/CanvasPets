@@ -67,16 +67,16 @@ Our focus is to make coursework more rewarding and engaging through pet-care gam
 
 ## Future Development
 1. User Authentication for API Access
-Currently, CanvasPets uses a hardcoded access token for interacting with the Canvas API. In future iterations, we plan to implement a user-friendly authentication system that allows users to input and save their Canvas API tokens securely. This will enable broader usability across different institutions beyond OSU.
+   Currently, CanvasPets uses a hardcoded access token for interacting with the Canvas API. In future iterations, we plan to implement a user-friendly authentication system that allows users to input and save their Canvas API tokens securely. This will enable broader usability across different institutions beyond OSU.
 
 2. Shop and Customization Features
-A key feature under development is the integration of a shop system where users can spend the points they earn by completing assignments. In the shop, users will be able to purchase various cosmetic items like new backgrounds, pet accessories, and treats for their CanvasPets. This will enhance user engagement and give them more control over customizing their experience.
+   A key feature under development is the integration of a shop system where users can spend the points they earn by completing assignments. In the shop, users will be able to purchase various cosmetic items like new backgrounds, pet accessories, and treats for their CanvasPets. This will enhance user engagement and give them more control over customizing their experience.
 
 3. Pet Interaction and Satisfaction System
-Future versions of CanvasPets will introduce interactions such as feeding and petting your pet. The system will include a "Pet Satisfaction" meter, which decreases over time if the pet is neglected (i.e., if the user does not complete assignments). Keeping the pet happy will motivate users to complete assignments on time, improving productivity.
+   Future versions of CanvasPets will introduce interactions such as feeding and petting your pet. The system will include a "Pet Satisfaction" meter, which decreases over time if the pet is neglected (i.e., if the user does not complete assignments). Keeping the pet happy will motivate users to complete assignments on time, improving productivity.
 
 4. Cross-Domain API Compatibility
-Currently, the extension is configured for OSU's Canvas domain (osu.instructure.com). We plan to make the extension compatible with other institutions' Canvas instances by deteacting a user's institution's Canvas domain, making the extension universally accessible to all Canvas users.
+   Currently, the extension is configured for OSU's Canvas domain (osu.instructure.com). We plan to make the extension compatible with other institutions' Canvas instances by deteacting a user's institution's Canvas domain, making the extension universally accessible to all Canvas users.
 
 ## Contributors
    Rida Adhami
