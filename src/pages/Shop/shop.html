@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>Canvas Pets Shop</title>
+    <link rel="icon" href="https://img.icons8.com/forma-thin-filled/24/cat-head.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <p id="tokens">Your Tokens: </p>
+   <h1>Canvas Pet Shop <img src="../../assets/car.png" alt="cat" id="cat"></h1>
+   <h3><button id="foodBtn">FOOD</button> | <button id="hatsBtn">HATS</button> | <button id="bckgBtn">BACKGROUND</button> | <button id="colorBtn">COLOR PALETTE</button></h3>
+   <div id="imageGrid"></div>
+</body>
+<script>
+    
+const categories = {
+    food: [
+        {src: "../../assets/food_1.png", alt: "food", hoverInfo: '<i class="fa fa-info-circle"></i> 15'},
+        {src: "../../assets/treat_1.png", alt: "treats", hoverInfo: '<i class="fa fa-info-circle"></i> 50'},
+    ],
+    hats: [
+        {src: "../../assets/hat_1.png", alt: "hats", hoverInfo: '<i class="fa fa-info-circle"></i> 75'},
+        {src: "../../assets/hat_2.png", alt: "hats", hoverInfo: '<i class="fa fa-info-circle"></i> 75'},
+    ],
+    bckg: [
+        {src: "../../assets/bckg_1.jpg", alt: "background 1", hoverInfo: '<i class="fa fa-info-circle"></i> 100'},
+        {src: "../../assets/bckg_2.jpg", alt: "background 2", hoverInfo: '<i class="fa fa-info-circle"></i> 100'},
+    ],
+    color: [
+        {src: "../../assets/color_1.png", alt: "future color palette", hoverInfo: '<i class="fa fa-info-circle"></i> 150'},
+        {src: "../../assets/color_2.png", alt: "future color palette", hoverInfo: '<i class="fa fa-info-circle"></i> 150'},
+    ]
+};
+
+function displayImages(category) {
+  const imageGrid = document.getElementById('imageGrid');
+  imageGrid.innerHTML = '';  // clears the pre-existing images
+
+  categories[category].forEach(image => {
+    const imgContainer = document.createElement('div');
+    imgContainer.classList.add('image-container');
+
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.classList.add('hover-effect');
+    
+    // Hover info
+    const hoverInfo = document.createElement('div');
+    hoverInfo.classList.add('hover-info');
+    hoverInfo.innerHTML = image.hoverInfo;  
+    
+    imgContainer.appendChild(img);
+    imgContainer.appendChild(hoverInfo);
+    imageGrid.appendChild(imgContainer);
+
+    img.addEventListener('click', () => {
+      window.location.href = "https://example.com";  // TODO: redirect to new html page with "purchase" info
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Display "food" images by default when the page loads
+  displayImages('food');
+});
+
+document.getElementById('foodBtn').addEventListener('click', () => displayImages('food'));
+document.getElementById('hatsBtn').addEventListener('click', () => displayImages('hats'));
+document.getElementById('bckgBtn').addEventListener('click', () => displayImages('bckg'));
+document.getElementById('colorBtn').addEventListener('click', () => displayImages('color'));
+
+</script>
+</html>

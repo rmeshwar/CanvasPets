@@ -23,7 +23,7 @@ const Info = () => {
       <h2>Developers</h2>
       <ul>
         <li>Rida Adhami</li>
-        <li>Lizzy </li>
+        <li>Lizzy Vologzhanin</li>
         <li>Kshitij Soni</li>
       </ul>
     </div>

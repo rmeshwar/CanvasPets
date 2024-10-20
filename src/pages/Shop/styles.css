@@ -1,0 +1,101 @@
+h1 {
+    font-family: "Playwrite GB S", cursive;
+    font-size: 50px;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+    color: rgb(130, 84, 47);
+    text-align: center;
+}
+
+body {
+    background-color: #b39e82;
+}
+
+h3 {
+    text-align: center;
+}
+
+#cat {
+    height: 100px;
+    vertical-align: bottom;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    
+    
+}
+
+.hover-info {
+    display: none;  /* Initially hidden */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);  /*sets level of opacity*/
+    color: white;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    font-family: "Playwrite GB S", cursive;
+    pointer-events: none;
+}
+
+.image-container:hover .hover-info {
+    display: block;  /* Show the hover info when the image is hovered */
+    transform: scale(1);
+}
+
+#tokens {
+    text-align: end;
+    vertical-align: top;
+    font-family: "Agdasima", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;     
+  }
+
+
+button {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #15966b;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #15966b;
+  }
+  
+button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #15966b;
+    box-shadow: 4px 5px 17px -4px #15966b;
+  }
+  
+button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgb(135, 171, 96);
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+  }
+  
+button:hover::before {
+    width: 250%;
+  }
+  

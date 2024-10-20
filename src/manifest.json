@@ -16,10 +16,10 @@
   },
   "action": {
     "default_popup": "Pages/Popup/index.html",  
-    "default_icon": "assets/camron.png"
+    "default_icon": "assets/favicon.png"
   },
   "icons": {
-    "128": "assets/camron.png"
+    "128": "assets/favicon.png"
   },
   "web_accessible_resources": [
     {
