@@ -3,7 +3,17 @@
   "name": "Canvas Pet",
   "description": "A pet that tracks your assignments on Canvas",
   "version": "1.0",
-  "permissions": ["storage", "https://*.instructure.com/*"],
+  "permissions": [
+    "storage",
+    "scripting",
+    "*://*.instructure.com/*"
+  ],
+  "host_permissions": [
+    "https://*.instructure.com/*"
+  ],
+  "background": {
+    "service_worker": "background.bundle.js"
+  },
   "action": {
     "default_popup": "Pages/Popup/index.html",  
     "default_icon": "assets/camron.png"
@@ -11,8 +21,10 @@
   "icons": {
     "128": "assets/camron.png"
   },
-  "web_accessible_resources": [{
-    "resources": ["assets/*"],
-    "matches": ["<all_urls>"]
-  }]
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

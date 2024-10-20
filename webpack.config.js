@@ -4,45 +4,43 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    popup: './src/Pages/Popup/popup.jsx',  // React component entry point
+    popup: './src/Pages/Popup/popup.jsx',  // Your entry point
+    background: './src/background.js',  // Add background entry if using background script
   },
   output: {
-    filename: '[name].bundle.js',  // Outputs popup.bundle.js
-    path: path.resolve(__dirname, 'build'),  // Outputs files to /build directory
-    clean: true,  // Clean the build folder before each build
+    filename: '[name].bundle.js',  // Dynamic filenames for different entry points
+    path: path.resolve(__dirname, 'build'),
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,  // Transpile JSX and JS files
+        test: /\.jsx?$/,  // Handle .js and .jsx files
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react']  // Ensure React is being transpiled
-          },
         },
       },
       {
-        test: /\.css$/,  // Handles CSS files
+        test: /\.css$/,  // Handle CSS files
         use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],  // Support both .js and .jsx extensions
+    extensions: ['.js', '.jsx'],  // Handle JavaScript and React files
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/Pages/Popup/index.html',  // Source HTML file
-      filename: 'Pages/Popup/index.html',  // Output in the build directory
-      chunks: ['popup'],  // Only include the popup bundle
+      template: './src/Pages/Popup/index.html',
+      filename: 'Pages/Popup/index.html',  // Output in build/Pages/Popup
+      chunks: ['popup'],  // Only include popup's JS
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/manifest.json', to: 'manifest.json' },  // Copy manifest.json to the build directory
-        { from: 'src/assets', to: 'assets' },  // Copy all assets to the /assets folder in build
-        { from: 'src/Pages/Popup/index.css', to: 'Pages/Popup/index.css' }, // Copy index.css
+        { from: 'src/manifest.json', to: 'manifest.json' },
+        { from: 'src/assets', to: 'assets' },  // Copy assets like icons
+        { from: 'src/Pages/Popup/index.css', to: 'Pages/Popup/index.css' },  // Copy popup CSS
       ],
     }),
   ],
