@@ -1,0 +1,31 @@
+/* Ensure the container takes up the full extension window */
+.pet-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents cropping if images go out of bounds */
+  }
+  
+  /* Background image for the Pet tab */
+  .pet-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  
+  /* Pet image centered in the app */
+  .pet-image {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    z-index: 2; /* Ensures the pet image is in front of the background */
+  }
+  

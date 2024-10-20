@@ -1,108 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import petTab from '../../assets/pet-tab.png';
+import settingsTab from '../../assets/settings-tab.png';
+import shopTab from '../../assets/shop-tab.png';
+import infoTab from '../../assets/info-tab.png';
+import Pet from '../Pet/Pet';
+import Info from '../Info/Info';
+import '../Pet/pet.css';
+import './index.css'
+import Settings from './settings'; // Import Settings tab content
 
 const Popup = () => {
-  const [courses, setCourses] = useState([]);
-  const [assignments, setAssignments] = useState([]);
+  const [activeTab, setActiveTab] = useState('Pet'); // Default to Pet tab
   const [points, setPoints] = useState(0); // Points tracking
-  const [prevTodoCount, setPrevTodoCount] = useState(0); // Previous To-Do count for tracking
-  const [authStatus, setAuthStatus] = useState('Not Authenticated');
+  const [assignments, setAssignments] = useState([]); // To-Do list
 
-  const hardcodedAccessToken = '8597~aChk3ynkKfWfPcTtkL2rE2RVYKRRCzvXhhNy8r6m3VP6tJCVnaLt4PH6D4uR4Q9V';
+  // Tab content function
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'Pet':
+        return <Pet />;
+      case 'Settings':
+        return (
+          <Settings
+            points={points}
+            assignments={assignments}
+            setAssignments={setAssignments}
+            setPoints={setPoints}
+          />
+        );
+      case 'Shop':
+        return <div><h2>Shop Tab</h2><p>Shop content goes here!</p></div>;
+      case 'Info':
+        return <Info />;
+      default:
+        return <div><h2>Pet Tab</h2><p>Your pet goes here!</p></div>;
+    }
+  };
 
-  // Simulate removing an item from the To-Do list for testing
-  const simulateRemoveItem = () => {
-    setAssignments((prevAssignments) => {
-      if (prevAssignments.length > 0) {
-        setPrevTodoCount(prevAssignments.length); // Update previous To-Do count
-        return prevAssignments.slice(0, prevAssignments.length - 1); // Remove one item from the assignments list
-      }
-      return prevAssignments;
-    });
-};
-
-  // Attach event listeners for the buttons using vanilla JS
+  // Attach event listeners for the navbar buttons using vanilla JS
   useEffect(() => {
-    // Fetch Assignments Button (First Button)
-    const fetchButton = document.querySelector('button');
-    if (fetchButton) {
-      fetchButton.addEventListener('click', () => {
-        console.log('Fetch Assignments button clicked');
-        fetchAssignmentsAndCourses(); // Trigger fetch assignments
+    const navbarButtons = document.querySelectorAll('.navbar img');
+    
+    // Event listener for tab switching
+    navbarButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const tab = event.target.alt; // Get the alt text (tab name) from the image
+        setActiveTab(tab); // Set the active tab based on the clicked button
       });
-    }
+    });
 
-    // Simulate Remove Assignment Button (Second Button)
-    const simulateButton = document.querySelectorAll('button')[1];
-    if (simulateButton) {
-      simulateButton.addEventListener('click', () => {
-        console.log('Simulate Remove Assignment button clicked');
-        simulateRemoveItem(); // Trigger simulate remove
-      });
-    }
-
-    // Clean up event listeners when component unmounts
+    // Clean up event listeners
     return () => {
-      if (fetchButton) fetchButton.removeEventListener('click', fetchAssignmentsAndCourses);
-      if (simulateButton) simulateButton.removeEventListener('click', simulateRemoveItem);
+      navbarButtons.forEach((button) => {
+        button.removeEventListener('click', () => {});
+      });
     };
   }, []);
 
-  // Fetch the assignments when the user clicks the "Fetch Assignments" button
-  const fetchAssignmentsAndCourses = () => {
-    console.log('Fetch button clicked');
-
-    chrome.runtime.sendMessage(
-      {
-        action: 'fetchData',
-        accessToken: hardcodedAccessToken, // Use hardcoded token
-        hostname: location.hostname,
-      },
-      (response) => {
-        if (response && response.success) {
-          console.log('Courses fetched:', response.courses);
-          setCourses(response.courses); // Set courses properly here
-          console.log('To-Do items fetched:', response.todoItems);
-          setPrevTodoCount(assignments.length); // Store the previous To-Do count
-          setAssignments(response.todoItems); // Set To-Do items
-        } else {
-          console.error('Error fetching data:', response.error);
-        }
-      }
-    );
-  };
-
-
-  // Logic to calculate points based on To-Do items
-  useEffect(() => {
-    if (assignments.length < prevTodoCount && prevTodoCount > 0) {
-      // User completed an assignment, add 25 points
-      setPoints((prevPoints) => prevPoints + 25);
-
-      if (assignments.length === 0) {
-        // User completed the last assignment, add 100 points as a bonus
-        setPoints((prevPoints) => prevPoints + 100);
-      }
-    }
-  }, [assignments]);
-
   return (
     <div>
-      <h1>Canvas Pet</h1>
-      <p>Status: {authStatus}</p>
-      <p>Points: {points}</p> {/* Show points */}
-      <p>To-Do List Items: {assignments.length}</p> {/* Show number of To-Do items */}
-
-      {/* Button to fetch assignments */}
-      <button style={{ padding: '10px', width: '100%' }}>
-        Fetch Assignments
-      </button>
-
-      {/* Button to simulate completing an assignment */}
-      <button style={{ padding: '10px', width: '100%', marginTop: '10px' }}>
-        Simulate Remove Assignment
-      </button>
+      <div className="content">
+        {renderTabContent()} {/* Renders the content for the active tab */}
+      </div>
+      
+      {/* Bottom Navbar */}
+      <div className="navbar">
+        <img src={petTab} alt="Pet" />
+        <img src={settingsTab} alt="Settings" />
+        <img src={shopTab} alt="Shop" />
+        <img src={infoTab} alt="Info" />
+      </div>
     </div>
   );
 };

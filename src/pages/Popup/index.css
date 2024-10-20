@@ -1,13 +1,32 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  width: 300px;
-  height: 260px;
+@font-face {
+  font-family: 'Morning';
+  src: url('../../assets/Morning.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 h1 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-family: 'Morning', sans-serif;
+  font-size: 36px; /* Larger size for headings */
+}
+
+h2 {
+  font-family: 'Morning', sans-serif;
+  font-size: 28px;
+}
+p {
+  font-family: 'Morning', sans-serif;
+  font-size: 24px; /* Size for paragraph text */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  padding: 20px;
+  width: 300px;
+  height: 260px;
+  background-color: #b39e82;
+  font-family: 'Morning', sans-serif;
 }
 
 input {
@@ -38,3 +57,22 @@ ul li {
   padding: 5px 0;
   border-bottom: 1px solid #ddd;
 }
+
+.content {
+  padding: 10px;
+  min-height: 300px;  /* Make sure it fits the content */
+}
+
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Align the items vertically if needed */
+  gap: 10px; /* Optional: Adds space between the buttons */
+  padding: 10px;
+}
+
+.navbar img {
+  height: 54px; /* Adjust this to match your button size */
+  cursor: pointer;
+}
+

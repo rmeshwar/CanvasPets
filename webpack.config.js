@@ -4,11 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    popup: './src/Pages/Popup/popup.jsx',  // Your entry point
-    background: './src/background.js',  // Add background entry if using background script
+    background: './src/background.js', // Entry for background script
+    popup: './src/pages/Popup/popup.jsx', // Entry for popup script
   },
   output: {
-    filename: '[name].bundle.js',  // Dynamic filenames for different entry points
+    filename: '[name].bundle.js',  // Use [name] to differentiate between popup and background
     path: path.resolve(__dirname, 'build'),
     clean: true,
   },
@@ -25,6 +25,21 @@ module.exports = {
         test: /\.css$/,  // Handle CSS files
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -38,7 +53,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/manifest.json', to: 'manifest.json' },
+        { from: 'src/manifest.json', to: 'manifest.json' },  // Copy manifest
         { from: 'src/assets', to: 'assets' },  // Copy assets like icons
         { from: 'src/Pages/Popup/index.css', to: 'Pages/Popup/index.css' },  // Copy popup CSS
       ],
