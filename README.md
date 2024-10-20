@@ -84,9 +84,9 @@ Our focus is to make coursework more rewarding and engaging through pet-care gam
 
 
 ## Contributors
-   Rida Adhami
-   Lizzy Vologzhanin
-   Kshij Soni
+- **Rida Adhami**
+- **Lizzy Vologzhanin**
+- **Kshitij Soni**
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
